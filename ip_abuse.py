@@ -28,15 +28,15 @@ def check_ip(ip_address, api_key):
 def read_ips_from_file(file_path):
     with open(file_path, 'r') as file:
         lines = file.readlines()
-    
-    ips = []
+
+    ips = set()  # Utiliser un ensemble pour éviter les doublons d'adresses IP
     for line in lines:
         line = line.strip()
         # Utiliser une expression régulière pour trouver les adresses IP dans chaque ligne
         ip_matches = re.findall(r'\b(?:\d{1,3}\.){3}\d{1,3}\b', line)
-        ips.extend(ip_matches)
-    
-    return ips
+        ips.update(ip_matches)
+
+    return list(ips)
 
 
 def save_to_text(result, output_file):
