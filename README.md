@@ -27,7 +27,7 @@ Récuperation de la clé d'API abuseipdb.com :
   - Se rendre dans l'onglet API et générer une clé d'API
   - Enrengistrer la clé d'API
 - Rentrer la clé dans le code ip_abuse.py
-  - Ligne 115 du code on trouve la zone à modifier pour insérer sa clé API
+  - Ligne 125 du code on trouve la zone à modifier pour insérer sa clé API
 
 
 ### Installation

@@ -3,6 +3,7 @@ import json
 import argparse
 import csv
 from datetime import datetime
+import re
 
 def check_ip(ip_address, api_key):
     command = [
@@ -26,8 +27,17 @@ def check_ip(ip_address, api_key):
 
 def read_ips_from_file(file_path):
     with open(file_path, 'r') as file:
-        ips = [line.strip() for line in file if line.strip()]
+        lines = file.readlines()
+    
+    ips = []
+    for line in lines:
+        line = line.strip()
+        # Utiliser une expression régulière pour trouver les adresses IP dans chaque ligne
+        ip_matches = re.findall(r'\b(?:\d{1,3}\.){3}\d{1,3}\b', line)
+        ips.extend(ip_matches)
+    
     return ips
+
 
 def save_to_text(result, output_file):
     with open(output_file, 'a') as file:
@@ -75,7 +85,7 @@ def main():
     print("  / ____ \| |_) | |__| |____) | |____ _| |_| |         | (_| |  __/ ||  __/ (__| || (_) | |   ")
     print(" /_/    \_\____/ \____/|_____/|______|_____|_|          \__,_|\___|\__\___|\___|\__\___/|_|   ")
     print("______________________________________________________________________________________________")
-    print("---------------------------------Made by : Valentin-------------------------------------------")
+    print("---------------------------------Made by : Milacek-------------------------------------------")
     print("--------------------------Don't forget to enter your API Key----------------------------------"+"\n")
     ### Fin Partie Affichage :
     
@@ -112,7 +122,7 @@ def main():
     
     ### 
     ###
-    api_key = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"  # Remplacez par votre clé d'API AbuseIPDBv2
+    api_key = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"  # Remplacez par votre clé d'API AbuseIPDBv2
     ###
     ###
     
